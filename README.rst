@@ -3,23 +3,20 @@ zayalabs
 
 trello like app
 
-.. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
-     :target: https://github.com/pydanny/cookiecutter-django/
-     :alt: Built with Cookiecutter Django
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-     :target: https://github.com/ambv/black
-     :alt: Black code style
-
-
-Settings
---------
-
-Moved to settings_.
-
-.. _settings: http://cookiecutter-django.readthedocs.io/en/latest/settings.html
-
 Basic Commands
 --------------
+create virtualenv
+python3.6 -m venv  venv
+source venv/bin/activate
+create database postgres *zayadb*
+export env variable
+
+export DATABASE_URL=postgres://username:userpassword@127.0.0.1:5432/zayadb
+
+python manage.py makemigrations
+python manage.py migrate
+
+
 
 Setting Up Your Users
 ^^^^^^^^^^^^^^^^^^^^^
@@ -32,47 +29,20 @@ Setting Up Your Users
 
 For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
 
-Type checks
-^^^^^^^^^^^
 
-Running type checks with mypy:
 
-::
+REST API Endpoints
+^^^^^^^^^^^^^^^^^^^^^
+login through ui 
+check 127.0.0.1:8000/rest-docs
+find api and check them through drf version ui (for better operation)
 
-  $ mypy zayalabs
+main 
 
-Test coverage
-^^^^^^^^^^^^^
-
-To run the tests, check your test coverage, and generate an HTML coverage report::
-
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
-
-Running tests with py.test
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-::
-
-  $ pytest
-
-Live reloading and Sass CSS compilation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Moved to `Live reloading and SASS compilation`_.
-
-.. _`Live reloading and SASS compilation`: http://cookiecutter-django.readthedocs.io/en/latest/live-reloading-and-sass-compilation.html
+http://127.0.0.1:8000/api/
 
 
 
-
-
-Deployment
-----------
-
-The following details how to deploy this application.
-
-
-
-
+http://127.0.0.1:8000/api/tasks/board/   (GET POST PUT DELETE)
+http://127.0.0.1:8000/api/tasks/list/    (GET POST PUT DELETE)
+http://127.0.0.1:8000/api/tasks/card/    (GET POST PUT DELETE)

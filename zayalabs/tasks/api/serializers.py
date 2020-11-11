@@ -41,9 +41,9 @@ class CardSerializer(serializers.ModelSerializer):
     created_by = serializers.HiddenField(default=serializers.CurrentUserDefault())
     modified_by = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
-
     due_date = fields.DateField(input_formats=['%Y-%m-%d'])
     def create(self, validated_data):
+        users =validated_data['users']
         card_obj = Card.objects.create(
             title = validated_data['title'],
             description = validated_data['description'],
@@ -52,9 +52,12 @@ class CardSerializer(serializers.ModelSerializer):
             status = validated_data['status'],
             attachements = validated_data['attachements'],
             created_by = validated_data['created_by'],
-            accomplished_by = validated_data['accomplished_by'],
 
             )
+        card_obj.save()
+        card_obj.save()
+        for user in users:
+            card_obj.users.add(user)
         card_obj.save()
         return card_obj
 
@@ -69,7 +72,7 @@ class CardSerializer(serializers.ModelSerializer):
             'attachements',
             'created_by',
             'modified_by',
-            'accomplished_by']
+            'users']
         read_only_fields=["created_by","modified_by"]
 
 
@@ -78,7 +81,7 @@ class ListSerializer(serializers.ModelSerializer):
     
     created_by = serializers.HiddenField(default=serializers.CurrentUserDefault())
     modified_by = serializers.HiddenField(default=serializers.CurrentUserDefault())
-    
+
 
     
     def create(self, validated_data):

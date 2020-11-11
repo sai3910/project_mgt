@@ -20,6 +20,6 @@ router.register("tasks/card", CardViewSet)
 
 app_name = "api"
 urlpatterns = router.urls
-urlpatterns+=[
-	path("register/", CreateUserViewSet.as_view(), name="register"),
-]
+# urlpatterns+=[
+# 	# path("register/", CreateUserViewSet.as_view(), name="register"),
+# ]

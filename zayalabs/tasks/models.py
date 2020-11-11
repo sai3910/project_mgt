@@ -49,6 +49,7 @@ class Card(TimeStampedModel):
     modified_on = models.DateTimeField(auto_now=True)
     due_date = models.DateField(auto_now=False)
     card_list = models.ForeignKey(List, on_delete=models.CASCADE, related_name='card_list')
+    users = models.ManyToManyField(User)
     
     status = models.CharField(
         max_length = 4,
@@ -62,7 +63,6 @@ class Card(TimeStampedModel):
     created_by = models.ForeignKey(User, related_name='card_created_by', null=False, on_delete=models.PROTECT)
     modified_by = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='card_modified_by')
 
-    accomplished_by = models.ForeignKey(User, related_name='accomplished_by', null=True, on_delete=models.SET_NULL)
    
     def __str__(self):
         return '%s - %s' % (self.title, self.description)
